@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+
+
+<div class="row mt-5">
+                <div class="col-12">
+                    <h4> Liste des Categories</h4> <span class="display-3"> {{ countAllCategorie['value'] }} </span> 
+
+                    <ul class="list-group">
+                        {% for categorie in categories %}
+
+                        
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="display-6">
+                                <i class="fa fa-star mx-3"></i>
+                  <a href="/categorie/{{categorie.id}}" >  {{categorie.nom}}</a>
+                            </span>
+                            
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                 
+            </div>
+                    
+             
+                 
+{% endblock %}

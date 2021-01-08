@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artiste index{% endblock %}
+
+{% block body %}
+    <h1>Artiste index</h1>
+
+    <table class="table">
+    
+        <thead>
+            <tr>
+                <div class="txt-red">
+                <th><h3>Nom</h3></th>
+                <th><h3>Pays</h3></th>
+                
+                <th><h3>actions</h3></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for artiste in artistes %}
+            <tr>
+                
+                <td><p><span><a href="{{ path('artiste_show', {'id': artiste.id}) }}"> <h3>{{ artiste.nom }}</h3></p></span></a> </td>
+                <td><p><span><a href="{{ path('artiste_show', {'id': artiste.id}) }}">  <h3>{{ artiste.pays }}</h3></p></span></a> </td>
+                
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </div>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artiste{% endblock %}
+
+{% block body %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="css/artiste.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+<div class="banner">
+    <div class="container">
+    <img  width="500" height="300" src="{{ asset('images/' ~ artiste.photo )}}">
+				
+				<div class="col-md-6 w3_agile_about_grid_right">
+				<p><span>	{{artiste.nom}}</span></p>
+                   
+                  <p><span>  {{artiste.pays}} </span></p>
+				</div>
+                
+</div>
+    
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 watch-card">
+            <div class="artist-title col-md-12">
+                <a href="/artiste/{{artiste.id}}">{{artiste.nom}}</a><br/>
+                <span>Music</span>
+            </div>
+            <div class="artist-collage col-md-12">
+                <span class="play-mix"><span class="btn btn-info play-mix-btn"> <span>►</span> {{artiste.nom}}</span></span>
+                <div class="col-md-6"><img src="{{ asset('images/' ~ artiste.photo )}}" alt="artist-image" width="150" height="150"></div>
+                     
+               
+            </div>
+            <div class="listing-tab col-md-12">
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#track" aria-controls="track" role="tab" data-toggle="tab">Album</a></li>
+                  </ul>
+                
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="track">
+                    {% for album in albums %}
+                        <ul>
+                            <li><a href="/album/{{album.id}}">{{album.nom}}</a></li>
+                           
+                        </ul>
+                        {% endfor %}
+                    </div>
+                    
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <button class="btn btn-primary" href="{{ path('artiste_index') }}">back to list</a>
+
+    </div>
+
+
+    
+{% endblock %}

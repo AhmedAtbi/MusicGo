@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Playlist{% endblock %}
+
+{% block body %}
+    <h1>Playlist</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Numero de playlist</th>
+                <td>{{ playlist.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ playlist.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="list-group">
+                      
+
+    <a href="{{ path('playlist_index') }}">back to list</a>
+
+    <a href="{{ path('playlist_edit', {'id': playlist.id}) }}">edit</a>
+
+    {% for titre in titres %}
+        <ul class="list-group">
+        
+  <a href="/titre/{{titre.id}}"> <li class="list-group-item">{{titre.artiste}} - {{titre.nom}} ||  {{titre.duree}}</li></a>
+ {% endfor %}
+
+
+    {{ include('playlist/_delete_form.html.twig') }}
+{% endblock %}

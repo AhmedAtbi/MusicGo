@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Titre{% endblock %}
+
+{% block body %}
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href='//fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
+	<!--slider-->
+	<!-- flipster -->
+	<link rel="stylesheet" href="css/jquery.flipster.css">
+
+	<script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.gallery.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#dg-container').gallery({
+				autoplay: true
+			});
+		});
+	</script>
+    <h1>Create new Titre</h1>
+	
+
+
+
+
+    	{{ form_row(form.nom) }}
+		   
+
+	    {{ form_row(form.url) }}
+
+
+
+
+
+
+
+    {{ include('titre/_form.html.twig') }}
+
+{{ form_end(form) }}
+
+    <a href="{{ path('titre_index') }}">back to list</a>
+{% endblock %}

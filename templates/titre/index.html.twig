@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Titre index{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+    <h1>Titre index</h1>
+
+    
+        
+        {% for titre in titres %}
+                               <ul class="list-group">
+
+ <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="display-6">
+                                <i class="fa fa-podcast mx-3"></i>
+                  <a href="/titre/{{titre.id}}" > {{titre.artiste}} - {{titre.nom}}                 {{titre.duree}}</a>
+                            
+                            
+                      
+    <div class="txt-red">
+						{% if is_granted("ROLE_USER") %}
+                            {% set isFav = false %}
+							{% for favoris in titre.fav %}
+								{% if favoris.id == app.user.id %}
+                                    {% set isFav = true %}
+								{% endif %}    
+							{% endfor %}
+                            {% if isFav %}
+								<a href="{{ path('retrait_favoris', {id: titre.id}) }}"><i class="fas fa-heart"></i></a>
+                            {% else %}
+								<a href="{{ path('ajout_favoris', {id: titre.id}) }}"><i class="far fa-heart"></i></a>
+                            {% endif %}
+
+						{% else %}
+							<i class="far fa-heart"></i>
+						{% endif %}
+						
+					</div>
+  </li>
+
+        {% else %}
+            
+                <h3 colspan="5">no records found</h3>
+            
+        {% endfor %}
+       
+                                          {% if is_granted('ROLE_ADMIN') %}
+
+    <a href="{{ path('titre_new') }}">Create new</a>
+    {% endif %}
+{% endblock %}

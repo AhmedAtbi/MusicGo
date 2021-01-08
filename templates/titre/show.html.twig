@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Titre{% endblock %}
+
+{% block body %}
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href='//fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
+	<!--slider-->
+	<!-- flipster -->
+	<link rel="stylesheet" href="css/jquery.flipster.css">
+
+	<script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.gallery.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#dg-container').gallery({
+				autoplay: true
+			});
+		});
+	</script>
+    <h1>{{titre.artiste}} - {{titre.nom}}</h1>
+  <div class="banner">
+    <div class="container">
+    
+				
+				<div class="col-md-6 w3_agile_about_grid_right">
+				<p><span><h3>Album :	{{titre.album}}</h3></span></p>
+                   
+                  <p><span><h3> Durée : {{titre.duree}} </h3></span></p>
+                  <div class="txt-red">
+						{% if is_granted("ROLE_USER") %}
+                            {% set isFav = false %}
+							{% for favoris in titre.fav %}
+								{% if favoris.id == app.user.id %}
+                                    {% set isFav = true %}
+								{% endif %}    
+							{% endfor %}
+                            {% if isFav %}
+								<a href="{{ path('retrait_favoris', {id: titre.id}) }}"><h3><i class="fa fa-thumbs-up"></i></h3></a>
+                            {% else %}
+								<a href="{{ path('ajout_favoris', {id: titre.id}) }}"><h3><i class="fa fa-thumbs-o-up"></i></h3></a>
+                            {% endif %}
+
+						{% else %}
+							<i class="far fa-heart"></i>
+						{% endif %}
+						
+					</div>
+				</div>
+
+
+                
+</div>
+
+    
+
+    <div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="{{ titre.url }}"}}" allowfullscreen></iframe>
+</div>
+
+    <a href="{{ path('titre_index') }}">back to list</a>
+
+    
+
+{% endblock %}

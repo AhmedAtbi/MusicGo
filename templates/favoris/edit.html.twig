@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href='//fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
+	<!--slider-->
+	<!-- flipster -->
+	<link rel="stylesheet" href="css/jquery.flipster.css">
+
+	<script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.gallery.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#dg-container').gallery({
+				autoplay: true
+			});
+		});
+	</script>
+{% block title %}Edit Favoris{% endblock %}
+
+{% block body %}
+    <h1>Edit Favoris</h1>
+
+    {{ include('favoris/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('favoris_index') }}">back to list</a>
+
+    {{ include('favoris/_delete_form.html.twig') }}
+{% endblock %}
